@@ -11,7 +11,7 @@ A list of base58 encoded public validation keys is returned.
 from parse_unl import parser
 
 address = "https://vl.ripple.com"
-KEYS = parse(address)
+KEYS = parser(address)
 ```
 
 The library returns a list of public validation keys.
