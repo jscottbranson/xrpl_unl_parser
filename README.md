@@ -1,7 +1,7 @@
 # xrpl_unl_parser
 This library retrieves and parses published Unique Node Lists (UNLs), such as the UNL published at `https://vl.ripple.com`. It consists of two functions - one to retrieve and parse the UNL, and the second to encode the resultant public validation keys using rippled's base58 alphabet.
 
-A base58 encoded list of public validation keys is returned.
+A list of base58 encoded public validation keys is returned.
 
 ## Required Packages
 `requests` - Used to retrieve the encoded UNL
@@ -13,6 +13,8 @@ from parse_unl import parser
 address = "https://vl.ripple.com"
 KEYS = parse(address)
 ```
+
+The library returns a list of public validation keys.
 
 ## License
 Do what ye please with this including using, modifying, and distributing it.
