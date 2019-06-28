@@ -27,7 +27,6 @@ The script does not verify the signature for the UNL manifest. Hopefully this wi
 ## Known Validator List Sites
 - `https://vl.ripple.com`
 - `https://vl.coil.com`
-- `https://vl.quernus.co.uk`
 
 ## License
 GNU GPLv3

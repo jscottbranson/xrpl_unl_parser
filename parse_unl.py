@@ -36,7 +36,7 @@ def unl_parser(address):
         keys['http_code'] = unl.status_code
         unl.raise_for_status()
     except requests.exceptions.RequestException:
-        keys['error'] = "Invalid URL: {}".format(address)
+        keys['error'] = "Invalid URL: {}.".format(address)
         return json.dumps(keys)
 
     try:
@@ -46,7 +46,7 @@ def unl_parser(address):
         return json.dumps(keys)
 
     if not validators:
-        keys['error'] = "List of validator keys was empty"
+        keys['error'] = "List of validator keys was empty."
         return json.dumps(keys)
 
     for i in validators:
