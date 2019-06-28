@@ -17,7 +17,7 @@ KEYS = unl_parser(ADDRESS)
 
 A JSON object is returned with the following keys:
 - `status`: Either `Error` or `Success`.
-- `Error`: Empty string if no error, or error details.
+- `error`: Empty string if no error, or error details.
 - `http_code`: Returns the http code as an integer, if it is available.
 - `public_validation_keys`: Returns a list of parsed keys, or an empty list if an error is encountered.
 
