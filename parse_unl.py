@@ -29,7 +29,8 @@ def unl_parser(address):
     keys = {'status': 'Error',
             'error': False,
             'http_code': '',
-            'public_validation_keys': []}
+            'public_validation_keys': [],
+            'expiration': '',}
 
     try:
         unl = requests.get(address)
@@ -40,7 +41,9 @@ def unl_parser(address):
         return json.dumps(keys)
 
     try:
-        validators = json.loads(b64decode(unl.json()['blob']).decode('utf-8'))['validators']
+        blob = json.loads(b64decode(unl.json()['blob']).decode('utf-8'))
+        validators = blob['validators']
+        keys['expiration'] = blob['expiration']
     except json.decoder.JSONDecodeError:
         keys['error'] = "Invalid or malformed manifest."
         return json.dumps(keys)
