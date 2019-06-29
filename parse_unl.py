@@ -49,7 +49,6 @@ def unl_parser(address):
         '''
         keys['expiration'] = blob['expiration'] + 946684800
 
-        keys['expiration'] = blob['expiration']
     except json.decoder.JSONDecodeError:
         keys['error'] = "Invalid or malformed manifest."
         return json.dumps(keys)
