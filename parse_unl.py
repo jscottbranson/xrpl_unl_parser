@@ -43,6 +43,12 @@ def unl_parser(address):
     try:
         blob = json.loads(b64decode(unl.json()['blob']).decode('utf-8'))
         validators = blob['validators']
+        '''
+        Convert Ripple Epoch to Unix Epoch
+        Reference : https://xrpl.org/basic-data-types.html
+        '''
+        keys['expiration'] = blob['expiration'] + 946684800
+
         keys['expiration'] = blob['expiration']
     except json.decoder.JSONDecodeError:
         keys['error'] = "Invalid or malformed manifest."
