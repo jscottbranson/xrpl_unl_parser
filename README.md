@@ -20,7 +20,7 @@ A JSON object is returned with the following keys:
 - `error`: Empty string if no error, or error details.
 - `http_code`: Returns the http code as an integer, if it is available.
 - `public_validation_keys`: Returns a list of parsed keys, or an empty list if an error is encountered.
-- `expiration`: UNL expiration date.
+- `expiration`: UNL expiration date (Unix Epoch).
 
 ## Limitations and Future Development
 The script does not verify the signature for the UNL manifest. Hopefully this will be available in a future version.
