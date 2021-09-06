@@ -26,6 +26,7 @@ A JSON object is returned with the following keys:
 The script does not verify the signature for the UNL manifest. Hopefully this will be available in a future version.
 
 ## Known Validator List Sites
+- `https://vl.xrplf.org`
 - `https://vl.ripple.com`
 - `https://vl.coil.com`
 
