@@ -20,7 +20,7 @@ def rippled_bs58(key):
         string = alphabet[idx:idx+1] + string
     return string
 
-def unl_parser(address='https://vl.ripple.com'):
+def unl_parser(address='https://vl.xrplf.org'):
     '''
     Download the UNL and base64 decode the blob.
     Defaults to https://vl.ripple.com
