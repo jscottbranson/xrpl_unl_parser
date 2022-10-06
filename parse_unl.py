@@ -66,3 +66,7 @@ def unl_parser(address='https://vl.xrplf.org'):
 
     keys['status'] = 'Success'
     return json.dumps(keys)
+
+if __name__ == "__main__":
+    UNL = unl_parser()
+    print(UNL)
