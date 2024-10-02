@@ -2,6 +2,9 @@ __pycache__/
 env/
 .env/
 test.py
+xrpl_unl_manager/
+xrpl-unl-manager/
 
 *.sh
 *.log
+*.json

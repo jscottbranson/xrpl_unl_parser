@@ -4,7 +4,9 @@ This library retrieves and parses published Unique Node Lists (UNLs), such as th
 A JSON object that includes a list of  base58 encoded public validation keys is returned.
 
 ## Required Packages
-`requests` - Used to retrieve the encoded UNL
+* `pip install requests base58 cryptography ecpy`
+
+* `git clone https://github.com/antIggl/xrpl-unl-manager.git && mv xrpl-unl-manager ./xrpl_unl_manager`
 
 ## Use
 This has been tested in Python versions 3.5, 3.6, and 3.7. Feedback on testing with earlier versions is appreciated.
@@ -26,21 +28,22 @@ A JSON object is returned with the following keys:
 The script does not verify the signature for the UNL manifest. Hopefully this will be available in a future version.
 
 ## Known Validator List Sites
+- `https://vl.xahau.org`
 - `https://vl.xrplf.org`
 - `https://vl.ripple.com`
-- `https://vl.coil.com`
 
 
 ## License
 GNU GPLv3
 
 ## Contact
-Visit me at [https://rabbitkick.club] or on Twitter [@rabbitkickclub].
+Visit me at [https://rabbitkick.club] or on Twitter [@jscottbranson].
 
 ## Thanks
 Special thanks to [Alloy] for his invaluable input and assistance testing!
 
+Thanks to [Antonios Inglezakis] for his UNL tool.
 
-[https://rabbitkick.club]:https://rabbitkick.club
-[@rabbitkickclub]:https://twitter.com/rabbitkickclub
+
 [Alloy]:https://twitter.com/alloynetworks
+[Antonios Inglezakis]:https://github.com/antIggl

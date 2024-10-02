@@ -1,13 +1,18 @@
 '''
 Retrieve and parse a published rippled UNL.
 Returns base58 encoded XRP Ledger keys.
+This script relies on: https://github.com/antIggl/xrpl-unl-manager/tree/master
+to parse validator manifests.
 '''
 
 import json
 from hashlib import sha256
 from base64 import b64decode
 import requests
+from xrpl_unl_manager import utils as parse_manifest
 
+UNL_URL = "https://vl.xahau.org"
+#UNL_URL = "https://vl.xrplf.org"
 
 def rippled_bs58(key):
     '''
@@ -20,7 +25,16 @@ def rippled_bs58(key):
         string = alphabet[idx:idx+1] + string
     return string
 
-def unl_parser(address='https://vl.xrplf.org'):
+def decode_pub_key(key):
+    '''
+    Decode public validation or list signing keys.
+    '''
+    payload = "1C" + key
+    key_decode = rippled_bs58(int(payload + sha256(bytearray.fromhex(sha256(
+            bytearray.fromhex(payload)).hexdigest())).hexdigest()[0:8], 16)).decode('utf-8')
+    return key_decode
+
+def unl_parser(url):
     '''
     Download the UNL and base64 decode the blob.
     Defaults to https://vl.ripple.com
@@ -30,15 +44,17 @@ def unl_parser(address='https://vl.xrplf.org'):
     keys = {'status': 'Error',
             'error': False,
             'http_code': '',
-            'public_validation_keys': [],
+            'publisher_key': '',
+            'validator_count': 0,
+            'mappings': {},
             'expiration': '',}
 
     try:
-        unl = requests.get(address)
+        unl = requests.get(url)
         keys['http_code'] = unl.status_code
         unl.raise_for_status()
     except requests.exceptions.RequestException:
-        keys['error'] = "Invalid URL: {}.".format(address)
+        keys['error'] = "Invalid URL: {}.".format(url)
         return json.dumps(keys)
 
     try:
@@ -58,15 +74,21 @@ def unl_parser(address='https://vl.xrplf.org'):
         keys['error'] = "List of validator keys was empty."
         return json.dumps(keys)
 
-    for i in validators:
-        payload = "1C" + i['validation_public_key']
-        keys['public_validation_keys'].append(
-            rippled_bs58(int(payload + sha256(bytearray.fromhex(sha256(
-                bytearray.fromhex(payload)).hexdigest())).hexdigest()[0:8], 16)).decode('utf-8'))
+    else:
+        for i in validators:
+            manifest = parse_manifest.decodeManifest(i['manifest'])
+            try:
+                domain = manifest['domain'].decode('utf-8')
+            except KeyError:
+                domain = "Domain not specified"
+            keys['mappings'][
+                    decode_pub_key(i['validation_public_key'])] = domain
+        keys['validator_count'] = len(keys['mappings'])
+        keys['publisher_key'] = decode_pub_key(unl.json()['public_key'])
 
     keys['status'] = 'Success'
     return json.dumps(keys)
 
 if __name__ == "__main__":
-    UNL = unl_parser()
+    UNL = unl_parser(UNL_URL)
     print(UNL)
