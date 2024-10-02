@@ -1,7 +1,7 @@
 # xrpl_unl_parser
-This library retrieves and parses published Unique Node Lists (UNLs), such as the UNL published at `https://vl.ripple.com`. It consists of two functions - one to retrieve and parse the UNL, and the second to encode the resultant public validation keys using rippled's base58 alphabet.
+This library retrieves and parses published Unique Node Lists (UNLs), such as the Xahau UNL published at "https://vl.xahau.org" or the XRP Ledger UNL published at `https://vl.xrplf.org`. It consists of two functions - one to retrieve and parse the UNL, and the second to encode the resultant public validation keys using rippled's base58 alphabet.
 
-A JSON object that includes a list of  base58 encoded public validation keys is returned.
+A JSON object that includes a dictionary of  base58 encoded public validation keys with their domain mappings is returned.
 
 ## Required Packages
 * `pip install requests base58 cryptography ecpy`

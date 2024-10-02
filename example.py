@@ -7,8 +7,8 @@ from parse_unl import unl_parser
 XRPLF = unl_parser("https://vl.xrplf.org")
 Ripple = unl_parser("https://vl.ripple.com")
 
-XRPLF = json.loads(XRPLF)['public_validation_keys']
-Ripple = json.loads(Ripple)['public_validation_keys']
+XRPLF = json.loads(XRPLF)['mappings']
+Ripple = json.loads(Ripple)['mappings']
 
 difference = list(set(Ripple) - set(XRPLF))
 
