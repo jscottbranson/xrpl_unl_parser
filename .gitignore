@@ -1,10 +1,12 @@
 __pycache__/
 *.py.swp
+*.pyc
 env/
 .env/
-test.py
 xrpl_unl_manager/
 xrpl-unl-manager/
+
+test.py
 
 *.sh
 *.log
