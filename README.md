@@ -13,7 +13,7 @@ This has been tested in Python versions 3.5, 3.6, and 3.7. Feedback on testing w
 ```
 from parse_unl import unl_parser
 
-ADDRESS = "https://vl.ripple.com"
+ADDRESS = "https://vl.xrplf.org"
 KEYS = unl_parser(ADDRESS)
 ```
 
